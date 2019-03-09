@@ -2,7 +2,7 @@ python practical_exercise_data_generator.py --load_data
 
 python practical_exercise_data_generator.py --create_csv
 
- ##steps: 
+ ##steps:  some more changes:
 ## executing sqoop job
 
 sqoop job \
