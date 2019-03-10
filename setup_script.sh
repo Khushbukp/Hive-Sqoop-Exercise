@@ -19,21 +19,7 @@ sqoop job \
 --check-column id \
 --last-value 0
 
-sqoop job \
---meta-connect jdbc:hsqldb:hsql://localhost:16000/sqoop \
---exec practical_exercise_1.activitylog 
 
-## import data from the MySQL Tables into Hive(User) 
-sqoop import \
---connect jdbc:mysql://localhost/practical_exercise_1 \
---username root \
---password cloudera \
---table user \
--m 2 \
---hive-import \
---hive-overwrite \
---hive-database practical_exercise_1 \
---hive-table user 
 
 ## make directory to hdfs 
 
