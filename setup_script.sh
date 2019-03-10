@@ -27,8 +27,8 @@ hadoop fs -mkdir /user/cloudera/workshop/exercise1
 hadoop fs -ls  /user/cloudera/workshop/   
 
 
-hive -e "create table if not exists user_report(id int, total_update bigint, total_insert bigint, total_delete bigint, last_activity_type string, is_active boolean, upload_count bigint);"
+hive -e "create table if not exists practical_exercise_1.user_report(id int, total_update bigint, total_insert bigint, total_delete bigint, last_activity_type string, is_active boolean, upload_count bigint);"
 
-hive -e "CREATE TABLE if not exists user_total (time_ran TIMESTAMP, total_users int, user_added int);" 
+hive -e "CREATE TABLE if not exists practical_exercise_1.user_total (time_ran TIMESTAMP, total_users int, user_added int);" 
 
 

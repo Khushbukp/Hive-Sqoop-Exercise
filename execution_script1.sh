@@ -1,6 +1,6 @@
-python practical_exercise_data_generator.py --load_data
+python /home/cloudera/practical_exercise_data_generator.py --load_data
 
-python practical_exercise_data_generator.py --create_csv
+python /home/cloudera/practical_exercise_data_generator.py --create_csv
 
  ##steps:  some more changes:
 ## executing sqoop job
@@ -24,7 +24,7 @@ sqoop import \
 
 ## To ingest CSV files from the local file system into HDFS
 
-mv /home/cloudera/*.csv   /home/cloudera/TEMP/user_upload_dump.$(date +%s).csv
+mv  *.csv   /home/cloudera/TEMP/user_upload_dump.$(date +%s).csv
 hadoop fs -put   /home/cloudera/TEMP/*.csv   /user/cloudera/exercise/    
 hadoop fs -ls  /user/cloudera/exercise/ 
 mv /home/cloudera/TEMP/*.csv   /home/cloudera/backup/
@@ -34,8 +34,8 @@ ls /home/cloudera/backup/
   
 hive -e "use practical_exercise_1;"
 hive -e "show tables;"
-hive -e "select * from user;" 
-hive -e "select * from activitylog;" 
+hive -e "select * from practical_exercise_1.user;" 
+hive -e "select * from practical_exercise_1.activitylog;" 
 
 ## ingesting csv files from hdfs to hive 
 hive -e "CREATE EXTERNAL TABLE if not exists practical_exercise_1.user_upload_dump ( user_id int, file_name STRING, timestamp int) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE LOCATION '/user/cloudera/workshop/exercise1/' tblproperties ('skip.header.line.count' = '1');"
@@ -43,7 +43,7 @@ hive -e "CREATE EXTERNAL TABLE if not exists practical_exercise_1.user_upload_du
 hive -e "select count(*) from practical_exercise_1.user_upload_dump;"
 
 ## generating user_report table  
-hive -e "truncate table user_report;" 
+hive -e "truncate table practical_exercise_1.user_report;" 
 
 hive -e "insert into user_report Select u.id,c.TOTAL_UPDATE, c.TOTAL_INSERT,  c.TOTAL_DELETE, b.Type as Last_ACTIVITY_Type, c.IS_ACTIVE,  d.total_upload from user u
 Join(select row_number() over(partition by user_id order by timestamp desc) as row_num,*  from activitylog) as b On u.id= b.user_id and b.row_num=1
