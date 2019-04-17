@@ -1,0 +1,15 @@
+{
+  "spark": {
+    "app_name": "Sensata-StreamingKafkaFromMqtt",
+    "master": "local[*]",
+    "batch_duration": 30
+  },
+  "mqtt": {
+    "broker_url": "tcp://localhost:1883",
+    "topic": [
+      "malaysia/1000/1234/pushers",
+      "china/1000/1234/pushers",
+      "singapore/1000/1234/pushers"
+    ]
+  }
+}

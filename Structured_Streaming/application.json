@@ -1,0 +1,20 @@
+{
+  "spark": {
+    "app_name": "Sensata-StreamingKafkaFromMqtt",
+    "master": "local[*]",
+    "batch_duration": 30,
+    "warehouse": "/home/clairvoyant/spark_streaming_from_mqtt/spark-warehouse"
+  },
+  "mqtt": {
+    "broker_url": "tcp://10.10.4.76:1883",
+    "topic": "+/+/1234/pushers"
+  },
+  "hive": {
+    "database_name": "default",
+    "table_name": "spark_mqtt"
+  },
+  "kudu": {
+    "master": "hadoop32.clairvoyant.local:7051",
+    "table_name": "default.spark_mqtt"
+  }
+}
